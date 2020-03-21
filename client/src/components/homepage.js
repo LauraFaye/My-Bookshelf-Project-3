@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "./form/index";
+import axios from 'axios'
 
 class HomePage extends Component {
     state = {
@@ -16,6 +17,17 @@ class HomePage extends Component {
             [name]: value
         });
     };
+
+    handleFormSubmit = (e) => {
+        e.preventDefault()
+        const { title, author, summary } = this.state
+        const payload = { title, summary, author }
+        console.log(payload)
+        axios.post('/api/savebook', payload).then((res) => {
+            console.log(res)
+        })
+
+    }
 
 
     render() {
