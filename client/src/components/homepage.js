@@ -22,9 +22,11 @@ class HomePage extends Component {
         e.preventDefault()
         const { title, author, summary } = this.state
         const payload = { title, summary, author }
-        console.log(payload)
+        console.log("loading payload.." + payload)
         axios.post('/api/savebook', payload).then((res) => {
-            console.log(res)
+            console.log("loading res.." + res)
+            console.log("loading payload2.." + payload)
+            this.state = {title: res.title}
         })
 
     }
