@@ -6,6 +6,13 @@
   height: 40vmin;
   pointer-events: none;
 }
+.display-4 {
+  background-color: rgb(160, 82, 45);
+  padding: .2em;
+  color: #fff !important
+}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

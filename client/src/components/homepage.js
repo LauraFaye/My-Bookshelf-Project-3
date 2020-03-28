@@ -22,11 +22,21 @@ class HomePage extends Component {
         e.preventDefault()
         const { title, author, summary } = this.state
         const payload = { title, summary, author }
-        console.log("loading payload.." + payload)
+        console.log("loading payload..")
+        console.log(payload)
         axios.post('/api/savebook', payload).then((res) => {
+            console.log(res)
+            if (res.data._id) {
+                this.setState({
+                    books: [],
+                    title: "",
+                    author: "",
+                    summary: ""
+                })
+            }
             console.log("loading res.." + res)
             console.log("loading payload2.." + payload)
-            this.state = {title: res.title}
+            // this.state = { title: res.title }
         })
 
     }
@@ -36,15 +46,15 @@ class HomePage extends Component {
 
         return (
 
-            // /* <div>My HomePage</div>//put crystals code here */}
+
 
             <div className="container">
                 <div className="text-center">
-                    <div className="container">
+                    <div>
                         <h1 className="display-4">My Bookshelf by Author</h1>
                     </div>
                 </div>
-                <button type="button" className="btn btn-md btn-primary">Add Book</button>
+                {/* <button type="button" className="btn btn-md btn-primary">Add Book</button> */}
                 <form>
                     <Input
                         value={this.state.title}
@@ -59,7 +69,7 @@ class HomePage extends Component {
                         placeholder="Author (required)"
                     />
                     <TextArea
-                        value={this.state.synopsis}
+                        value={this.state.summary}
                         onChange={this.handleInputChange}
                         name="summary"
                         placeholder="Summary (Optional)"
@@ -68,7 +78,7 @@ class HomePage extends Component {
                         disabled={!(this.state.author && this.state.title)}
                         onClick={this.handleFormSubmit}
                     >
-                        Submit Book
+                        Add Book
               </FormBtn>
                 </form>
             </div>

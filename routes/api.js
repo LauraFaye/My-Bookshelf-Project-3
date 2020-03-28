@@ -3,6 +3,17 @@ const db = require("../models")
 
 router.post("/savebook", (req, res) => {
     console.log(req.body)
+    // db.Book.save(req.body)
+    db.Book.create(req.body)
+        .then(function (dbBook) {
+            // View the added result in the console
+            console.log(dbBook);
+            res.json(dbBook)
+        })
+        .catch(function (err) {
+            // If an error occurred, log it
+            console.log(err);
+        });
 })
 
 // router.route("/")
@@ -15,4 +26,4 @@ router.post("/savebook", (req, res) => {
 //   .put(bookController.update)
 //   .delete(bookController.remove);
 
-module.exports=router
+module.exports = router
